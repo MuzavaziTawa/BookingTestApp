@@ -18,12 +18,7 @@ onGetBookingYears = async () => {
       var date = bookings[a].date;
       var fullyear = new Date(date).getFullYear();
 
-      //check if it exists in the array
-      var filteredYears = years.filter(function (year) {
-        return year == full;
-      });
-
-      if (filteredYears == null) {
+      if (!years.includes(fullyear)) {
         years.push(fullyear);
       } 
     }
