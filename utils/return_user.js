@@ -1,5 +1,7 @@
-onGetUser = async (id) => {
-  var users = await AsyncStorage.getItem('bk_users') || null;
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+onGetUser = async id => {
+  var users = (await AsyncStorage.getItem('bk_users')) || null;
   if (users == null) {
     return null;
   } else {
@@ -10,4 +12,4 @@ onGetUser = async (id) => {
 
     return filteredUser;
   }
-}
+};

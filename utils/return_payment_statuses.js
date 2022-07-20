@@ -1,5 +1,8 @@
-onGetPaymentStatus = async (id) => {
-  var PaymentStatus = await AsyncStorage.getItem('bk_PaymentStatus') || null;
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+onGetPaymentStatus = async id => {
+  var PaymentStatus =
+    (await AsyncStorage.getItem('bk_payment_statuses')) || null;
   if (PaymentStatus == null) {
     return null;
   } else {
@@ -10,5 +13,4 @@ onGetPaymentStatus = async (id) => {
 
     return filteredPaymentStatus;
   }
-}
-
+};

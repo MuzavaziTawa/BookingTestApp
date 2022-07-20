@@ -1,112 +1,84 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import type {Node} from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import Bookings from './screens/Bookings';
+import Boats from './screens/Bookings';
+import EditBooking from './screens/Bookings';
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
+import {Icon} from 'native-base';
+import {Platform, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function App() {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="BottomNavigator"
+          component={BottomAppNavigator}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="EditBooking"
+          component={EditBooking}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
+}
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+function BottomAppNavigator() {
+  const colors = {primary: '#501', accent: '#FFF'};
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+    <Tab.Navigator
+      initialRouteName="Bookings"
+      lazy={false}
+      swipeEnabled={false}
+      tabBarOptions={{
+        showLabel: false,
+        showIcon: true,
+        indicatorStyle: {backgroundColor: '#FF9501'},
+        style: {
+          backgroundColor: colors.primary,
+          height: hp('9%'),
+        },
+        inactiveBackgroundColor: colors.primary,
+        activeBackgroundColor: colors.primary,
+        inactiveTintColor: colors.accent,
+        activeTintColor: colors.accent,
+      }}>
+      <Tab.Screen
+        name="Bookings"
+        component={Bookings}
+        options={{
+          tabBarLabel: 'Bookings',
+          tabBarIcon: ({color}) => (
+            <Icon name="star" style={{fontSize: wp('10%'), color: color}} />
+          ),
+        }}
+      />
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+      <Tab.Screen
+        name="Boats"
+        component={Boats}
+        options={{
+          tabBarLabel: 'Boats',
+          tabBarIcon: ({color}) => (
+            <Icon name="boat" style={{fontSize: wp('10%'), color: color}} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
 
 export default App;
