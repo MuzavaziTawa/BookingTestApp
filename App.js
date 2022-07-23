@@ -7,11 +7,10 @@ import {
 } from 'react-native-responsive-screen';
 
 import Bookings from './screens/Bookings';
-import Boats from './screens/Bookings';
+import Boats from './screens/Boats';
 import EditBooking from './screens/Bookings';
 
 import {Icon} from 'native-base';
-import {Platform, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
@@ -37,19 +36,21 @@ function App() {
 }
 
 function BottomAppNavigator() {
-  const colors = {primary: '#501', accent: '#FFF'};
+  const colors = {primary: '#F5F6F7F0', accent: '#0071EC'};
   return (
     <Tab.Navigator
       initialRouteName="Bookings"
       lazy={false}
       swipeEnabled={false}
       tabBarOptions={{
-        showLabel: false,
+        shifting: true,
+        showLabel: true,
         showIcon: true,
         indicatorStyle: {backgroundColor: '#FF9501'},
         style: {
           backgroundColor: colors.primary,
-          height: hp('9%'),
+          paddingBottom: hp('0.7%'),
+          paddingTop: hp('1%'),
         },
         inactiveBackgroundColor: colors.primary,
         activeBackgroundColor: colors.primary,
@@ -62,7 +63,10 @@ function BottomAppNavigator() {
         options={{
           tabBarLabel: 'Bookings',
           tabBarIcon: ({color}) => (
-            <Icon name="star" style={{fontSize: wp('10%'), color: color}} />
+            <Icon
+              name="ios-book-outline"
+              style={{fontSize: wp('6%'), color: color}}
+            />
           ),
         }}
       />
@@ -73,7 +77,10 @@ function BottomAppNavigator() {
         options={{
           tabBarLabel: 'Boats',
           tabBarIcon: ({color}) => (
-            <Icon name="boat" style={{fontSize: wp('10%'), color: color}} />
+            <Icon
+              name="boat-outline"
+              style={{fontSize: wp('6%'), color: color}}
+            />
           ),
         }}
       />

@@ -1,130 +1,128 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-onFetchAllAPIs = async () => {
-  this.onGetCurrencies();
-  this.onGetBoatTypes();
-  this.onGetBoats();
-  this.onGetBookings();
-  this.onGetPaymentStatuses();
-  this.onGetUsers();
-};
+class getData {
+  onFetchAllAPIs = async () => {
+    onGetCurrencies();
+    onGetBoatTypes();
+    onGetBoats();
+    onGetBookings();
+    onGetPaymentStatuses();
+    onGetUsers();
+  };
 
-onGetCurrencies = async () => {
-  try {
-    await fetch(
-      'https://hexis-test-api.s3.eu-central-1.amazonaws.com/currencies.json',
-      {
-        method: 'GET',
-      },
-    )
-      .then(response => {
-        response.json().then(result => {
-          console.log(result);
-          AsyncStorage.setItem('bk_currencies', result);
+  onGetCurrencies = async () => {
+    try {
+      await fetch(
+        'https://hexis-test-api.s3.eu-central-1.amazonaws.com/currencies.json',
+        {
+          method: 'GET',
+        },
+      )
+        .then(response => {
+          response.json().then(result => {
+            AsyncStorage.setItem('bk_currencies', JSON.stringify(result));
+          });
+        })
+        .catch(err => {
+          console.error(err);
         });
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  } catch (e) {}
-};
+    } catch (e) {}
+  };
 
-onGetBookings = async () => {
-  try {
-    await fetch(
-      'https://hexis-test-api.s3.eu-central-1.amazonaws.com/bookings.json',
-      {
-        method: 'GET',
-      },
-    )
-      .then(response => {
-        response.json().then(result => {
-          console.log(result);
-          AsyncStorage.setItem('bk_bookings', result);
+  onGetBookings = async () => {
+    try {
+      await fetch(
+        'https://hexis-test-api.s3.eu-central-1.amazonaws.com/bookings.json',
+        {
+          method: 'GET',
+        },
+      )
+        .then(response => {
+          response.json().then(result => {
+            AsyncStorage.setItem('bk_bookings', JSON.stringify(result));
+          });
+        })
+        .catch(err => {
+          console.error(err);
         });
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  } catch (e) {}
-};
+    } catch (e) {}
+  };
 
-onGetPaymentStatuses = async () => {
-  try {
-    await fetch(
-      'https://hexis-test-api.s3.eu-central-1.amazonaws.com/payment_statuses.json',
-      {
-        method: 'GET',
-      },
-    )
-      .then(response => {
-        response.json().then(result => {
-          console.log(result);
-          AsyncStorage.setItem('bk_payment_statuses', result);
+  onGetPaymentStatuses = async () => {
+    try {
+      await fetch(
+        'https://hexis-test-api.s3.eu-central-1.amazonaws.com/payment_statuses.json',
+        {
+          method: 'GET',
+        },
+      )
+        .then(response => {
+          response.json().then(result => {
+            AsyncStorage.setItem('bk_payment_statuses', JSON.stringify(result));
+          });
+        })
+        .catch(err => {
+          console.error(err);
         });
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  } catch (e) {}
-};
+    } catch (e) {}
+  };
 
-onGetBoatTypes = async () => {
-  try {
-    await fetch(
-      'https://hexis-test-api.s3.eu-central-1.amazonaws.com/boat_types.json',
-      {
-        method: 'GET',
-      },
-    )
-      .then(response => {
-        response.json().then(result => {
-          console.log(result);
-          AsyncStorage.setItem('bk_boat_types', result);
+  onGetBoatTypes = async () => {
+    try {
+      await fetch(
+        'https://hexis-test-api.s3.eu-central-1.amazonaws.com/boat_types.json',
+        {
+          method: 'GET',
+        },
+      )
+        .then(response => {
+          response.json().then(result => {
+            AsyncStorage.setItem('bk_boat_types', JSON.stringify(result));
+          });
+        })
+        .catch(err => {
+          console.error(err);
         });
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  } catch (e) {}
-};
+    } catch (e) {}
+  };
 
-onGetBoats = async () => {
-  try {
-    await fetch(
-      'https://hexis-test-api.s3.eu-central-1.amazonaws.com/boats.json',
-      {
-        method: 'GET',
-      },
-    )
-      .then(response => {
-        response.json().then(result => {
-          console.log(result);
-          AsyncStorage.setItem('bk_boats', result);
+  onGetBoats = async () => {
+    try {
+      await fetch(
+        'https://hexis-test-api.s3.eu-central-1.amazonaws.com/boats.json',
+        {
+          method: 'GET',
+        },
+      )
+        .then(response => {
+          response.json().then(result => {
+            AsyncStorage.setItem('bk_boats', JSON.stringify(result));
+          });
+        })
+        .catch(err => {
+          console.error(err);
         });
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  } catch (e) {}
-};
+    } catch (e) {}
+  };
 
-onGetUsers = async () => {
-  try {
-    await fetch(
-      'https://hexis-test-api.s3.eu-central-1.amazonaws.com/users.json',
-      {
-        method: 'GET',
-      },
-    )
-      .then(response => {
-        response.json().then(result => {
-          console.log(result);
-          AsyncStorage.setItem('bk_users', result);
+  onGetUsers = async () => {
+    try {
+      await fetch(
+        'https://hexis-test-api.s3.eu-central-1.amazonaws.com/users.json',
+        {
+          method: 'GET',
+        },
+      )
+        .then(response => {
+          response.json().then(result => {
+            AsyncStorage.setItem('bk_users', JSON.stringify(result));
+          });
+        })
+        .catch(err => {
+          console.error(err);
         });
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  } catch (e) {}
-};
+    } catch (e) {}
+  };
+}
+
+export default getData;
