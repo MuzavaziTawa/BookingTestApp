@@ -290,8 +290,7 @@ export default class Bookings extends Component {
     }
   }
 
-  onBookingPressed = (booking, month) => {
-    console.log(booking);
+  onViewAllBookings = (booking, month) => {
     this.setState({
       truncSelectionData: booking,
       truncSelectionMonth: month,
@@ -337,6 +336,13 @@ export default class Bookings extends Component {
         </Text>
       </TouchableOpacity>
     );
+  };
+
+  onEditBooking = async item => {
+    await AsyncStorage.setItem(
+      'bk_selected_booking',
+      JSON.stringify(item),
+    ).then(() => this.props.navigation.push('EditBooking'));
   };
 
   renderBookingsList() {
@@ -415,12 +421,10 @@ export default class Bookings extends Component {
                 {title}
               </Text>
             )}
-            renderSectionFooter={({
-              section: {title, data, allbookings, month, truncate},
-            }) =>
+            renderSectionFooter={({section: {title, allbookings, truncate}}) =>
               truncate ? (
                 <TouchableOpacity
-                  onPress={() => this.onBookingPressed(allbookings, title)}
+                  onPress={() => this.onViewAllBookings(allbookings, title)}
                   style={{
                     marginBottom: hp('1.5%'),
                     backgroundColor: '#0071EC',
@@ -470,9 +474,9 @@ export default class Bookings extends Component {
     }
   }
 
-  renderBookingView = item => {
+  renderBookingView = (item, singlebooking) => {
     return (
-      <View>
+      <TouchableOpacity onPress={() => this.onEditBooking(item)}>
         <Card
           style={{
             marginBottom: hp('1.5%'),
@@ -522,7 +526,7 @@ export default class Bookings extends Component {
             </Row>
           </Col>
         </Card>
-      </View>
+      </TouchableOpacity>
     );
   };
 

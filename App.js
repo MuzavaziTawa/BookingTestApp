@@ -8,7 +8,7 @@ import {
 
 import Bookings from './screens/Bookings';
 import Boats from './screens/Boats';
-import EditBooking from './screens/Bookings';
+import EditBooking from './screens/ViewBooking';
 
 import {Icon} from 'native-base';
 import {NavigationContainer} from '@react-navigation/native';
